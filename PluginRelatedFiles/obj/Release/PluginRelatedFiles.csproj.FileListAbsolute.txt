@@ -1,0 +1,11 @@
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\bin\Release\PluginRelatedFiles.dll
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\bin\Release\PluginRelatedFiles.pdb
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles.csproj.AssemblyReference.cache
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\Forms\UserWindFile.g.cs
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles_MarkupCompile.cache
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles_MarkupCompile.lref
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\Forms\UserWindFile.baml
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles.g.resources
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles.csproj.CoreCompileInputs.cache
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles.dll
+C:\Users\nurma\Downloads\Plugins\PluginRelatedFiles\PluginRelatedFiles\obj\Release\PluginRelatedFiles.pdb

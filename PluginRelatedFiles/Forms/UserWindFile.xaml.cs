@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Shapes;
+using Autodesk.Revit.UI;
 using OfficeOpenXml;
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.DB;
+using System.Globalization;
+using System.Reflection;
 
 namespace PluginRelatedFiles.Forms
 {
@@ -13,56 +19,53 @@ namespace PluginRelatedFiles.Forms
     public partial class UserWindFile : Window
     {
         private List<string> _listPathFile { get; set; } = new List<string>();
-        private List<string> _listNameFile { get; set; } = new List<string>();
 
-        public UserWindFile(List<string> listPathFile, List<string> listNameFile)
+        public UserWindFile(List<string> listPathFile)
         {
             InitializeComponent();
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             _listPathFile = listPathFile;
-            _listNameFile = listNameFile;
             FileListView.Items.Clear();
             foreach (string path in _listPathFile)
             {
-                FileListView.Items.Add(path);
+                FileListView.Items.Add(System.IO.Path.GetFileNameWithoutExtension(path));
             }
-
-            foreach (string path in _listNameFile)
+            if (_listPathFile.Count() == 0)
             {
-                FileListView.Items.Add(path);
+                FileListView.ItemsSource = new List<string> {"Нету активных связанных файлов!" };
             }
         }
-        private void ToFileExcel(object sender, EventArgs e)
+        private void ToFileExportExcel(object sender, RoutedEventArgs e)
         {
-            CreateExcelFile(_listPathFile, _listNameFile);
-        }
-
-        public void CreateExcelFile(List<string> sheet1, List<string> sheet2)
-        {
-            //string downloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            //string filePath = System.IO.Path.Combine(downloadsPath, "ExportedData.xlsx");
-            string filePath = @"C:\Users\nurma\Downloads\start\ExportedData.xlsx";
-
-            // Создаем новый Excel пакет
-            using (var package = new ExcelPackage())
+            if (_listPathFile.Count() == 0)
             {
-                // Создаем первый лист и заполняем его данными из sheet1
-                var worksheet1 = package.Workbook.Worksheets.Add("Sheet1");
-                for (int i = 0; i < sheet1.Count(); i++)
-                {
-                    worksheet1.Cells[i + 1, 1].Value = sheet1[i]; // Заполняем первый столбец
-                }
+                MessageBox.Show("Нету активных связанных файлов!");
+                return;
+            }
+            try
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                string downloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+                string filePath = System.IO.Path.Combine(downloadsPath, "ExportedData.xlsx");
+                FileInfo fileInfo = new FileInfo(filePath);
 
-                // Создаем второй лист и заполняем его данными из sheet2
-                var worksheet2 = package.Workbook.Worksheets.Add("Sheet2");
-                for (int i = 0; i < sheet2.Count(); i++)
+                using (ExcelPackage package = new ExcelPackage())
                 {
-                    worksheet2.Cells[i + 1, 1].Value = sheet2[i]; // Заполняем первый столбец
-                }
+                    ExcelWorksheet worksheet1 = package.Workbook.Worksheets.Add("Лист 1");
+                    for (int i = 0; i < _listPathFile.Count(); i++)
+                    {
+                        worksheet1.Cells[i + 1, 2].Value = _listPathFile[i];
+                        worksheet1.Cells[i + 1, 1].Value = System.IO.Path.GetFileNameWithoutExtension(_listPathFile[i]);
+                    }
 
-                // Сохраняем файл
-                package.SaveAs(new FileInfo(filePath));
+                    package.SaveAs(fileInfo);
+                }
+                MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
         }
+            
     }
 }

@@ -9,10 +9,12 @@
              d:DesignHeight="400" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="17px"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40px"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="FileListView" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button x:Name="StartToFile" Content="Начать импорт" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="ToFileExcel"/>
+        <TextBlock x:Name="Hello" Grid.Row="0" Text="Чтобы экспортировать связанные файлы нажмите 'Начать экспорт'" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <ListBox x:Name="FileListView" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="StartExportToFile" Content="Начать экспорт (*xlsx)" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="ToFileExportExcel"/>
     </Grid>
 </Window>

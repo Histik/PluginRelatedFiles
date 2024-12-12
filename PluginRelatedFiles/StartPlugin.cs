@@ -11,7 +11,6 @@ namespace PluginRelatedFiles
     public class StartPlugin : IExternalCommand
     {
         private List<string> listPathFile { get; set; } = new List<string>();
-        private List<string> listNameFile { get; set; } = new List<string>();
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIDocument uiDoc = commandData.Application.ActiveUIDocument;
@@ -25,11 +24,13 @@ namespace PluginRelatedFiles
 
             foreach (RevitLinkInstance linkInstance in linkInstances)
             {
-                listPathFile.Add(linkInstance.GetLinkDocument().PathName);
-                listNameFile.Add(System.IO.Path.GetFileName(linkInstance.GetLinkDocument().PathName));
+                if (linkInstance.GetLinkDocument() != null)
+                {
+                    listPathFile.Add(linkInstance.GetLinkDocument().PathName);
+                }
             }
 
-            UserWindFile windFile = new UserWindFile(listPathFile, listNameFile);
+            UserWindFile windFile = new UserWindFile(listPathFile);
             windFile.ShowDialog();
 
             return Result.Succeeded;

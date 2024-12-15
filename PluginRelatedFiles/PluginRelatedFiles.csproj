@@ -171,9 +171,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\UserWindFile.xaml.cs">
-      <DependentUpon>UserWindFile.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StartPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
